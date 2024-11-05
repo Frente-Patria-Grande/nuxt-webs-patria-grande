@@ -1,7 +1,5 @@
-import {computed, useRoute} from "#imports";
+import { computed, useRoute } from '#imports'
 
 export const useCustomRoute = () => {
-  const customRoute = computed(() => useRoute().query.customRoute)
-
-  return customRoute
+  return computed(() => useRoute().query.customRoute)
 }

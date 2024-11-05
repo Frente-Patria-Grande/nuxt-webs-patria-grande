@@ -1,14 +1,17 @@
 <template>
   <div class="flex flex-col gap-12">
+    <span>error: {{ error || 'n' }}</span>
     <div v-for="post in indexCategory?.posts">
-      <h2 class="text-2xl font-bold tracking-tight">
+      <a
+        :href="post.url"
+        class="text-2xl font-bold tracking-tight"
+      >
         {{ post.title }}
-      </h2>
+      </a>
     </div>
   </div>
 </template>
 
 <script setup>
-const response = await useFetch(`/ah-api/categories/Inicio`);
-const indexCategory = response?.data;
+const { data: indexCategory, error } = await useCategory('Inicio')
 </script>

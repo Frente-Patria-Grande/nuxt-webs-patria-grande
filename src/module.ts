@@ -4,20 +4,20 @@ import {
   addServerHandler,
   createResolver,
   defineNuxtModule,
-  installModule
+  installModule,
 } from '@nuxt/kit'
-import defu from "defu";
+import defu from 'defu'
 
 import PatriaGrandePreset from '@frente-patria-grande/tailwind-preset'
 
 // Module options TypeScript interface definition
 export interface ModuleOptions {
-  baseUrl: string | null,
-  websiteSlug: string,
-  token: string,
-  headers: Object | null,
-  paths: Array<string> | null,
-  pathRewrite: Object | null,
+  baseUrl: string | null
+  websiteSlug: string
+  token: string
+  headers: object | null
+  paths: Array<string> | null
+  pathRewrite: object | null
 }
 
 export default defineNuxtModule<ModuleOptions>({
@@ -43,7 +43,7 @@ export default defineNuxtModule<ModuleOptions>({
       _nuxt.options.runtimeConfig.websPatriaGrande,
       {
         proxyUrl: _options.baseUrl.replace(/\/+$/, '') + '/' + _options.websiteSlug?.replace(/^\/+/, ''),
-      }
+      },
     )
 
     // updateRuntimeConfig({
@@ -55,13 +55,13 @@ export default defineNuxtModule<ModuleOptions>({
       addServerHandler({
         route: path,
         handler: resolver.resolve('./runtime/server/ah-proxy.ts'),
-      });
+      })
     }
 
     addRouteMiddleware({
       name: 'dynamic-route',
       path: resolver.resolve('runtime/middleware/dynamic-route-middleware.ts'),
-      global: true
+      global: true,
     })
 
     addImportsDir(resolver.resolve('./runtime/composables'))
@@ -79,7 +79,7 @@ export default defineNuxtModule<ModuleOptions>({
           './error.vue',
         ],
         preset: [PatriaGrandePreset],
-      }
+      },
     })
   },
 })
